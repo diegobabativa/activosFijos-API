@@ -5,15 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Ciudad")
 public class Ciudad {
-	
+
 	@Id
 	@GeneratedValue
 	private int codigo;
-	
 	private String nombre;
 
 	public int getCodigo() {
@@ -36,6 +34,5 @@ public class Ciudad {
 	public String toString() {
 		return "Ciudad [codigo=" + codigo + ", nombre=" + nombre + "]";
 	}
-	
 
 }

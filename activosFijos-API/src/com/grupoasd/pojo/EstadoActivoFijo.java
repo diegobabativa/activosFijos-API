@@ -1,5 +1,6 @@
 package com.grupoasd.pojo;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,6 @@ public class EstadoActivoFijo {
 	@Id
 	@GeneratedValue
 	private int codigo;
-	
 	private String nombre;
 	private String descripcion;
 	
@@ -39,5 +39,6 @@ public class EstadoActivoFijo {
 		return "EstadoActivoFijo [codigo=" + codigo + ", nombre=" + nombre
 				+ ", descripcion=" + descripcion + "]";
 	}
+	
 	
 }

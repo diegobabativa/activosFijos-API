@@ -6,44 +6,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.grupoasd.pojo.Ciudad;
-import com.grupoasd.pojo.EstadoActivoFijo;
-import com.grupoasd.pojo.TipoActivoFijo;
-import com.grupoasd.service.CiudadService;
-import com.grupoasd.service.EstadoActivoFijoService;
-import com.grupoasd.service.TipoActivoFijoService;
+import com.grupoasd.pojo.ActivoFijo;
+import com.grupoasd.service.ActivoFijoService;
 
 @Controller
 public class RestController {
 	
-	@Autowired
-	private CiudadService ciudadService;
 	
 	@Autowired
-	private TipoActivoFijoService tipoActivoFijoServe;
-	
-	@Autowired
-	private EstadoActivoFijoService estadoActivoFijoService;
+	private ActivoFijoService activoFijoService;
 
 	@RequestMapping("/")
 	public String showIndex() {
+		List<ActivoFijo> activosFijos = activoFijoService.findAll();
+		System.out.println("Cantidad de  activos fijos:" + activosFijos.size());
+		System.out.println("La consultada es:" + activosFijos.get(0));
+		return "index";
+	}
+	
+	@RequestMapping("/activosFijos")
+	public String listarActivosFijos() {
+		
+	
+		List<ActivoFijo> activosFijos = activoFijoService.findAll();
+		System.out.println("Cantidad de  activos fijos:" + activosFijos.size());
+		System.out.println("La consultada es:" + activosFijos.get(0));
+		
+		
 		return "index";
 	}
 	
 	@RequestMapping("/about")
 	public String showAbout() {
-		List<Ciudad> ciudades= ciudadService.findAll();
-		List<TipoActivoFijo> tiposActivosFijos = tipoActivoFijoServe.findAll();
-		List<EstadoActivoFijo> estadosActivosFijos = estadoActivoFijoService.findAll();
-		
-		System.out.println("Cantidad de ciudades:" + ciudades.size());
-		System.out.println("La ciudad consultada es:" + ciudades.get(0));
-		
-		System.out.println("Cantidad de Tipos activos fijos:" + tiposActivosFijos.size());
-		System.out.println("La consultada es:" + tiposActivosFijos.get(0));
-		
-		System.out.println("Cantidad de estados activos fijos:" + estadosActivosFijos.size());
-		System.out.println("La consultada es:" + estadosActivosFijos.get(0));
 		
 		return "about";
 	}
