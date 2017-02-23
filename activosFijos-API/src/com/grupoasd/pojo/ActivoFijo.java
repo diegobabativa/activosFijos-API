@@ -2,10 +2,16 @@ package com.grupoasd.pojo;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  * Clase de Dominio ActivoFijo
@@ -19,7 +25,6 @@ public class ActivoFijo {
 	@Id
 	@GeneratedValue
 	private int codigo;
-	
 	private String nombre;
 	private String descripcion;
 	private String serial;
@@ -32,11 +37,21 @@ public class ActivoFijo {
 	private Date fechaCompra;
 	private Date fechaBaja;
 	private int codigoEstadoActual;
+	
+	/*
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinColumn(name="codigoEstadoActual")
+	private EstadoActivoFijo codigoEstadoActual;*/
+	
 	private int codigoTipoActivo;
 	private int codigoArea;
-
 	private String color;
 
+	public ActivoFijo() {
+		
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -117,12 +132,14 @@ public class ActivoFijo {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	
 	public int getCodigoEstadoActual() {
 		return codigoEstadoActual;
 	}
 	public void setCodigoEstadoActual(int codigoEstadoActual) {
 		this.codigoEstadoActual = codigoEstadoActual;
 	}
+	
 	public int getCoditoTipoActivo() {
 		return codigoTipoActivo;
 	}

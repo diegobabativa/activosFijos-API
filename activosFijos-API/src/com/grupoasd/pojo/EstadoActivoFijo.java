@@ -15,6 +15,16 @@ public class EstadoActivoFijo {
 	private int codigo;
 	private String nombre;
 	private String descripcion;
+
+	/*
+	@JsonManagedReference
+	@OneToMany(mappedBy = "codigoEstadoActual", fetch = FetchType.EAGER)
+	private Set<ActivoFijo> activosFijos;
+	*/
+
+	public EstadoActivoFijo() {
+	
+	}
 	
 	public int getCodigo() {
 		return codigo;
@@ -34,11 +44,10 @@ public class EstadoActivoFijo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 	@Override
 	public String toString() {
 		return "EstadoActivoFijo [codigo=" + codigo + ", nombre=" + nombre
 				+ ", descripcion=" + descripcion + "]";
 	}
-	
-	
 }
