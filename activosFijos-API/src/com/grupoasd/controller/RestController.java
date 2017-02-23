@@ -36,9 +36,4 @@ public class RestController {
 		return "index";
 	}
 	
-	@RequestMapping("/about")
-	public String showAbout() {
-		
-		return "about";
-	}
 }
