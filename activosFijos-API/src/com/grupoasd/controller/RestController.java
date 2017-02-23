@@ -50,6 +50,7 @@ public class RestController {
 	public void findAll(HttpServletResponse httpServletResponse) {
 		try {
 			List<ActivoFijo> activosFijos = activoFijoService.findAll();
+			
 			if( activosFijos != null && !activosFijos.isEmpty()){
 				String jsonSalida = jsonTransformer.toJson(activosFijos);
 				httpServletResponse.getWriter().print(jsonSalida);
@@ -64,6 +65,8 @@ public class RestController {
 		httpServletResponse
 		.setContentType("application/json; charset=UTF-8");
 	}
+	
+	
 	
 
 }
