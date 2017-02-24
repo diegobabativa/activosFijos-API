@@ -42,4 +42,23 @@ public class ActivoFijoService {
 		return activoFijoDao.findBySerial(serial);
 	}
 
+	/**
+	 * Método del servicio que valida Excepciones de Negocio para que sean
+	 * escaladas al controlador.
+	 * 
+	 * @param activoFijo
+	 */
+	public void save(ActivoFijo activoFijo) {
+		
+		if (activoFijo.getFechaCompra().before(activoFijo.getFechaBaja())) {
+			activoFijoDao.save(activoFijo);
+		} else {
+			throw new RuntimeException(
+					"La fecha de Baja no puede ser Inferior a la de compra");
+		}
+		
+		
+
+	}
+
 }

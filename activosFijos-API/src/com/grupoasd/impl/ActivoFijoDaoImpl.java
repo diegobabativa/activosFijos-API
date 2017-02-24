@@ -68,4 +68,9 @@ public class ActivoFijoDaoImpl implements ActivoFijoDao {
 		return query.list();
 	}
 
+	@Override
+	public void save(ActivoFijo activoFijo) {
+		 getSession().save(activoFijo);
+	}
+
 }

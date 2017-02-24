@@ -22,4 +22,6 @@ public interface ActivoFijoDao {
 	public List<ActivoFijo> findByBuyDate(Date buyDate);
 
 	public List<ActivoFijo> findBySerial(String serial);
+	
+	public void save(ActivoFijo activoFijo); 
 }
