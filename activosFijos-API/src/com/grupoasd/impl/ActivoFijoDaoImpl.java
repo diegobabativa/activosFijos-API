@@ -30,6 +30,11 @@ public class ActivoFijoDaoImpl implements ActivoFijoDao {
 	@Autowired
 	private SessionFactory sessionFActory;
 
+	/**
+	 * Retorna la sesion actual
+	 * 
+	 * @return
+	 */
 	public Session getSession() {
 		return sessionFActory.getCurrentSession();
 	}
@@ -70,7 +75,25 @@ public class ActivoFijoDaoImpl implements ActivoFijoDao {
 
 	@Override
 	public void save(ActivoFijo activoFijo) {
-		 getSession().save(activoFijo);
+		getSession().save(activoFijo);
+	}
+
+	@Override
+	public void update(ActivoFijo activoFijo) {
+		getSession().update(activoFijo);
+	}
+
+	@Override
+	public ActivoFijo findById(int codigo) {
+		@SuppressWarnings("unchecked")
+		List<ActivoFijo> encontrado =  getSession()
+				.createQuery("from ActivoFijo where codigo = :codigo")
+				.setParameter("codigo", codigo).list();
+		if (encontrado.size()!= 0 ){
+			return encontrado.get(0);
+		}else {
+			return null;
+		}
 	}
 
 }

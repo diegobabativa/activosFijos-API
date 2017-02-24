@@ -157,6 +157,9 @@ public class RestController {
 	}
 
 	/**
+	 * Método del controlador encargado de recibir una petición de tipo POST la
+	 * cual recibe un objeto de entrada (Json) para poder ser almacenado como un
+	 * ActivoFijo
 	 * 
 	 * @param httpServletRequest
 	 * @param httpServletResponse
@@ -178,4 +181,41 @@ public class RestController {
 					+ ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+	 * Método del controlador encargado de recibir una petición de tipo POST la
+	 * cual recibe un objeto de entrada (Json) para poder ser almacenado como un
+	 * ActivoFijo
+	 * 
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 * @param jsonEntrada
+	 */
+	@RequestMapping(value = "/activoFijo", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Object> update(HttpServletRequest httpServletRequest,
+			@RequestBody String jsonEntrada) {
+		try {
+			ActivoFijo activofijo = (ActivoFijo) jsonTransformer.fromJson(
+					jsonEntrada, ActivoFijo.class);
+
+			ActivoFijo activoFijoEncontrado = activoFijoService
+					.findById(activofijo.getCodigo());
+
+			if (null != activoFijoEncontrado) {
+				activoFijoService.update(activofijo);
+			} else {
+				return new ResponseEntity<Object>(
+						"No se ha encontrado ningún registro",
+						HttpStatus.NOT_FOUND);
+			}
+
+			String jsonSalida = jsonTransformer.toJson(activofijo);
+			return new ResponseEntity<Object>(jsonSalida, HttpStatus.OK);
+
+		} catch (Exception ex) {
+			return new ResponseEntity<Object>("Se ha producido un Error: "
+					+ ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }

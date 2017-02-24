@@ -15,13 +15,62 @@ import com.grupoasd.pojo.ActivoFijo;
  */
 public interface ActivoFijoDao {
 
+	/**
+	 * Especificación de método encargado de retornar un Activo Fijo buscado por
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ActivoFijo findById(int codigo);
+
+	/**
+	 * Especificación de método encargado de retornar todos los Activos Fijos
+	 * encontrados
+	 * 
+	 * @return List<ActivoFijo>
+	 */
 	public List<ActivoFijo> findAll();
 
+	/**
+	 * Especificación de método encargado de retornar los Activos Fijos
+	 * filtrados por Tipo
+	 * 
+	 * @param idTipo
+	 * @return List<ActivoFijo>
+	 */
 	public List<ActivoFijo> findByType(int idTipo);
 
+	/**
+	 * Especificación de método encargado de retornar los Activos Fijos
+	 * filtrados por Fecha de compra
+	 * 
+	 * @param buyDate
+	 * @return
+	 */
 	public List<ActivoFijo> findByBuyDate(Date buyDate);
 
+	/**
+	 * Especificación de método encargado de retornar los Activos Fijos
+	 * filtrados por serial
+	 * 
+	 * @param serial
+	 * @return
+	 */
 	public List<ActivoFijo> findBySerial(String serial);
-	
-	public void save(ActivoFijo activoFijo); 
+
+	/**
+	 * Especificación de método encargado de guardar un activo Fijo que entra
+	 * como parámetro
+	 * 
+	 * @param activoFijo
+	 */
+	public void save(ActivoFijo activoFijo);
+
+	/**
+	 * Especificación de método encargado de actualizar un activo Fijo que entra
+	 * como parámetro
+	 * 
+	 * @param activoFijo
+	 */
+	public void update(ActivoFijo activoFijo);
 }
